@@ -2,7 +2,7 @@
  Open source URL shortener. Made in Brazil
 
 
-# Intall
+# Install
 
 With [Node.js](http://nodejs.org/) installed in machine and cloned this project
 

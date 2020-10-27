@@ -34,6 +34,7 @@
    },
    "devDependencies": {
       "@types/node": "^8.0.29",
+      "@typescript-eslint/eslint-plugin-tslint": "^4.6.0",
       "gts": "^3.0.2",
       "ts-node": "3.3.0",
       "typescript": "3.3.3333"
