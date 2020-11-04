@@ -6,7 +6,12 @@ import * as fs from 'fs';
 export const initServer = async () =>{
     const server = Hapi.server({
         port: process.env.PORT || 3000,
-        host: process.env.BASE_URI || 'localhost'
+        host: process.env.BASE_URI || 'localhost',
+        debug: {
+            request: [
+                'error'
+            ]
+        }
     });
 
     initApi(server);

@@ -18,6 +18,8 @@ export const redirectToUrl = async(request:RedirectRequest, responseToolkit: Res
         throw Boom.notFound(`Url of redirect not found of identifier -> ${url_identifier}`);
     }
 
+    const data = await UrlService.addAccesInUrl(url.id, url.count);
+
     return responseToolkit.redirect(url.url)
 }
 

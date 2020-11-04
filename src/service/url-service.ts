@@ -14,7 +14,8 @@ export const getUrlByIdentifier = async (urlIndentifier) => {
 export const createUrl = async ({url, urlIndentifier}) =>{
     const urlCreate = new Url({
         url, 
-        urlIndentifier: urlIndentifier || getIdentifier()
+        urlIndentifier: urlIndentifier || getIdentifier(),
+        count: 0
      });
  
     await urlCreate.save(); 
@@ -33,7 +34,29 @@ export const updateUrl = async ({id, url, urlIndentifier})=> {
     .set(
         {
             url, 
-            urlIndentifier: urlIndentifier || getIdentifier()
+            urlIndentifier: urlIndentifier || getIdentifier(),
+            count: 0
+        }
+    )
+    .execute();
+
+    return urlUpdate;
+};
+
+export const addAccesInUrl = async (id,count)=> {
+
+    count++
+
+    const urlUpdate = await createQueryBuilder(Url)
+    .update()
+    .where(
+        {
+            id
+        }
+    )
+    .set(
+        {
+            count
         }
     )
     .execute();
