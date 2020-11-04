@@ -1,7 +1,47 @@
-// GET /urls <-- lista as urls 
+import { Server } from "@hapi/hapi"
+import * as Validations from './url-validations'
+import * as Controller from './url-controller'
 
-// GET /urls/url_identifier <----- redireciona para a url e adiciona mais um no count 
 
-//POST /urls <----- cadastra uma nova url ------ Não pode cadastrar duas url com o mesmo identificador
 
-//PUT /urls/id <---- altera a url 
+export const initRoutes = (server: Server) => {
+    server.route([
+        {
+            method: 'GET',
+            path: '/urls',
+            handler: Controller.getUrls,
+        },
+        {
+            method: 'GET',
+            path: '/urls/{url_identifier}',
+            handler: Controller.redirectToUrl,
+            options:{
+                validate:{
+                    params:Validations.UrlIndentifierValidatitor
+                }
+            }
+        },
+        {
+            method: 'POST',
+            path: '/urls',
+            handler: Controller.createUrl,
+            options: {
+                validate:{
+                    payload: Validations.UrlPayload
+                }
+            }
+        },
+        {
+            method: 'PUT',
+            path: '/urls/{id}',
+            handler:Controller.updateUrl,
+            options: {
+                validate:{
+                    params: Validations.UrlId,
+                    payload: Validations.UrlPayload
+                }
+            }
+        },
+
+    ])
+};

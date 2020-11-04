@@ -1,5 +1,15 @@
-// Validar o Id que vem na url do put 
+import * as Joi from '@hapi/joi';
 
-// validar payload do post 
 
-// validar o identificador da url
+export const UrlId = Joi.object({
+    id: Joi.string().uuid().required(),
+});
+
+export const UrlPayload= Joi.object({
+    urlIndentifier : Joi.string().trim().token().optional(),
+    url: Joi.string().trim().uri().optional()
+});
+
+export const UrlIndentifierValidatitor= Joi.object({
+    url_identifier : Joi.string().trim().token().required()
+});
