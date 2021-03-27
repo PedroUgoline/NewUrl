@@ -13,6 +13,15 @@ export interface CreateUrlRequest extends Request {
     }
 }
 
+
+export interface CreateUserRequest extends Request {
+    payload:{
+        email: string;
+        password: string;
+        username: string;
+    }
+}
+
 export interface UpdateUrlRequest extends Request {
     params: {
         id:string;

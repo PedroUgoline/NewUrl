@@ -15,9 +15,9 @@ export const initRoutes = (server: Server) => {
             method: 'GET',
             path: '/urls/{url_identifier}',
             handler: Controller.redirectToUrl,
-            options:{
-                validate:{
-                    params:Validations.UrlIndentifierValidatitor
+            options: {
+                validate: {
+                    params: Validations.UrlIndentifierValidatitor
                 }
             }
         },
@@ -26,7 +26,7 @@ export const initRoutes = (server: Server) => {
             path: '/urls',
             handler: Controller.createUrl,
             options: {
-                validate:{
+                validate: {
                     payload: Validations.UrlPayload
                 }
             }
@@ -34,14 +34,33 @@ export const initRoutes = (server: Server) => {
         {
             method: 'PUT',
             path: '/urls/{id}',
-            handler:Controller.updateUrl,
+            handler: Controller.updateUrl,
             options: {
-                validate:{
+                validate: {
                     params: Validations.UrlId,
                     payload: Validations.UrlPayload
                 }
             }
         },
-
+        {
+            method: 'POST',
+            path: '/createUser',
+            handler: Controller.createUser,
+            options: {
+                validate: {
+                    payload: Validations.CreateUser
+                }
+            }
+        },
+        {
+            method: 'POST',
+            path: '/login',
+            handler: Controller.Login,
+            options: {
+                validate: {
+                    payload: Validations.Login
+                }
+            }
+        },
     ])
 };
